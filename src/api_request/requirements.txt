@@ -1,0 +1,9 @@
+functions-framework==3.*
+google-cloud-bigquery
+db-dtypes  
+pandas  
+python-dotenv
+gtfs-realtime-bindings
+protobuf
+pandas-gbq
+pyarrow
