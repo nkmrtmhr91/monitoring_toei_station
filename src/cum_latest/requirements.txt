@@ -1,0 +1,8 @@
+functions-framework==3.*
+python-dotenv
+gtfs-realtime-bindings
+protobuf
+pandas
+geopandas
+pandas-gbq
+pyarrow
