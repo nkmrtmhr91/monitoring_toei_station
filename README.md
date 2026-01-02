@@ -10,12 +10,12 @@
 
 <img src='./docs/capture_dashboard.png' width="500">
 
-# 🚪API提供元
+# API提供元
 - 公共交通オープンデータセンター(ODPT)
     - https://www.odpt.org/
     - うち、[鉄道関連リアルタイム情報](https://ckan.odpt.org/dataset/r_train_gtfs_rt-odpt_train-toei/resource/ab773be1-aab7-47f2-8cd7-1ddbd9d8c8b9)と[鉄道関連情報](https://ckan.odpt.org/dataset/train-toei/resource/35b68908-4558-47ae-bfa5-867e58544a1a)を参照しています
 
-## APIフォーマット
+■ <b>APIフォーマット</b>
 - プロトコルバッファ(Protocol Buffers)
     - https://gtfs.org/ja/documentation/realtime/reference/
     - 開発時に参考したサイト) https://nttdocomo-developers.jp/entry/20231218_1
@@ -35,7 +35,7 @@
     - 🪣BigQuery
     - 📊Looker Studio
 
-# 🔁ワークフロー概観
+# ワークフロー概観
 主に2つの処理で構成されています
 - 🟦逐次的にAPIを叩き、当該時間断面の車両位置情報を取得して貯蓄
 - 🟩貯めたAPIレスポンスを束ねて加工し、ダッシュボーディング
@@ -49,3 +49,15 @@
 1. 日付ごとのテーブルを参照し、当該時間断面まで貯めた駅通過台数を得る
 2. 加工した運行マスタと突合させ、駅×時刻の1日累計通過台数な表を作成
 3. 作成した表を別途DWHにreplaceし、BIツールが参照する表が更新される
+
+# 環境変数
+.envファイルに以下の変数名で所定の定数を記載しておく必要があります
+| 変数名 | 内容 |
+| --- | --- |
+| API_TOKEN | APIリクエスト用のアクセスキー |
+| BQ_PROJECT_ID | BigQueryのプロジェクトID |
+| BQ_NAME_DARASET | BigQueryのデータセット名 |
+| BG_NAME_TABLE | BigQueryのテーブル名 |
+|  |  |
+
+✅APIキーはODPTにて開発者登録をして発行の必要があります
